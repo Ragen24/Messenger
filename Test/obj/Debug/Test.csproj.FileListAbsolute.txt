@@ -1,1 +1,10 @@
 C:\Project\Test\Test\bin\Debug\Test.exe.config
+C:\Project\Test\Test\bin\Debug\Test.exe
+C:\Project\Test\Test\bin\Debug\Test.pdb
+C:\Project\Test\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+C:\Project\Test\Test\obj\Debug\Test.MainForm.resources
+C:\Project\Test\Test\obj\Debug\Test.Properties.Resources.resources
+C:\Project\Test\Test\obj\Debug\Test.Registration.resources
+C:\Project\Test\Test\obj\Debug\Test.csproj.GenerateResource.Cache
+C:\Project\Test\Test\obj\Debug\Test.exe
+C:\Project\Test\Test\obj\Debug\Test.pdb
