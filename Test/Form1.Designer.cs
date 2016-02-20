@@ -1,6 +1,6 @@
 ﻿namespace Test
 {
-    partial class MainForm
+    partial class LogIn
     {
         /// <summary>
         /// Required designer variable.
@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             this.Registration_But = new System.Windows.Forms.Button();
+            this.SignIn_But = new System.Windows.Forms.Button();
+            this.Exit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Registration_But
             // 
-            this.Registration_But.Location = new System.Drawing.Point(30, 378);
+            this.Registration_But.Location = new System.Drawing.Point(65, 91);
             this.Registration_But.Name = "Registration_But";
             this.Registration_But.Size = new System.Drawing.Size(100, 23);
             this.Registration_But.TabIndex = 0;
@@ -41,13 +43,34 @@
             this.Registration_But.UseVisualStyleBackColor = true;
             this.Registration_But.Click += new System.EventHandler(this.Registration_But_Click);
             // 
-            // MainForm
+            // SignIn_But
+            // 
+            this.SignIn_But.Location = new System.Drawing.Point(65, 41);
+            this.SignIn_But.Name = "SignIn_But";
+            this.SignIn_But.Size = new System.Drawing.Size(100, 23);
+            this.SignIn_But.TabIndex = 2;
+            this.SignIn_But.Text = "Войти";
+            this.SignIn_But.UseVisualStyleBackColor = true;
+            this.SignIn_But.Click += new System.EventHandler(this.SignIn_But_Click);
+            // 
+            // Exit
+            // 
+            this.Exit.Location = new System.Drawing.Point(65, 142);
+            this.Exit.Name = "Exit";
+            this.Exit.Size = new System.Drawing.Size(100, 23);
+            this.Exit.TabIndex = 3;
+            this.Exit.Text = "Выход";
+            this.Exit.UseVisualStyleBackColor = true;
+            // 
+            // LogIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 425);
+            this.ClientSize = new System.Drawing.Size(224, 210);
+            this.Controls.Add(this.Exit);
+            this.Controls.Add(this.SignIn_But);
             this.Controls.Add(this.Registration_But);
-            this.Name = "MainForm";
+            this.Name = "LogIn";
             this.Text = "Messanger";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
@@ -57,6 +80,8 @@
         #endregion
 
         private System.Windows.Forms.Button Registration_But;
+        private System.Windows.Forms.Button SignIn_But;
+        private System.Windows.Forms.Button Exit;
     }
 }
 

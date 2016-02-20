@@ -10,14 +10,13 @@ using System.Windows.Forms;
 
 namespace Test
 {
-    public partial class MainForm : Form
+    public partial class LogIn : Form
     {
-        //static public MainForm classMainData;
+        static public LogIn classMainForm;
         
 
-        public MainForm()
+        public LogIn()
         {
-            //classMainData = this;
             InitializeComponent();
         }
 
@@ -30,6 +29,12 @@ namespace Test
         private void MainForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void SignIn_But_Click(object sender, EventArgs e)
+        {
+            SignIn signInForm = new SignIn();
+            signInForm.Show();
         }
     }
 }

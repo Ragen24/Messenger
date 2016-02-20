@@ -8,3 +8,8 @@ C:\Project\Test\Test\obj\Debug\Test.Registration.resources
 C:\Project\Test\Test\obj\Debug\Test.csproj.GenerateResource.Cache
 C:\Project\Test\Test\obj\Debug\Test.exe
 C:\Project\Test\Test\obj\Debug\Test.pdb
+C:\Project\Test\Test\obj\Debug\Test.SignIn.resources
+C:\Project\Test\Test\obj\Debug\Test.WriteMessage.resources
+C:\Project\Test\Test\bin\Debug\EntityFramework.dll
+C:\Project\Test\Test\bin\Debug\EntityFramework.xml
+C:\Project\Test\Test\obj\Debug\Test.LogIn.resources
