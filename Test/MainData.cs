@@ -19,6 +19,7 @@ namespace Test
 
         public class Messages
         {
+            public int ID;
             public int sender_id;
             public int recipient_id;
             public string header;

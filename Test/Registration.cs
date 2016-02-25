@@ -22,13 +22,13 @@ namespace Test
         // Проверка валидности вводимых данных
         private bool IsValid(string login, string name, string surname, string email, string password, string passwordConfirm)
         {
-            // Регулярки для имени/фамилии, логина, пароля и Email.
+            // Регулярки для имени/фамилии, логина, пароля и Email
             string patternName = @"^[а-яА-ЯёЁa-zA-Z]+$";
             string patternLogin = @"^[а-яА-ЯёЁa-zA-Z][а-яА-ЯёЁa-zA-Z0-9-_\.]{1,20}$";
             string patternPassword = @"^[a-zA-Z0-9]+$";
             string patternEmail = @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
                 @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$";
-            // Переменные для проверки уникальности логина и Email'a.
+            // Переменные для проверки уникальности логина и Email'a
             bool unicLog;
             bool unicEmail;
 
@@ -42,8 +42,8 @@ namespace Test
                 return false;
             }
 
-            // Проверка логина на уникальность
-            using (SqlConnection con = new SqlConnection("Data Source=RAGEN;Initial Catalog=Test;Integrated Security=True"))
+            // Проверка логина и Email на уникальность
+            using (SqlConnection con = new SqlConnection("Data Source=192.168.1.65,1433;Initial Catalog=Test;User ID=Ragen; Password=utg1df25fu"))
             {
                 con.Open();
                 using (SqlCommand com = con.CreateCommand())
@@ -62,7 +62,8 @@ namespace Test
                 }
                 con.Close();
             }
-
+            
+            // Уникальность логина
             if (unicLog)
             {
                 MessageBox.Show("Такой логин уже используется.");
@@ -70,6 +71,7 @@ namespace Test
                 Login_TextBox.Focus();
                 return false;
             }
+            // Уникальность Email
             if (unicEmail)
             {
                 MessageBox.Show("Такой Email уже используется.");
@@ -129,10 +131,11 @@ namespace Test
                 return false;
             }
             
+            // Проверка пройдена
             return true;
         }
 
-        // Метод преведения имени и фамилии к нужному формату(первая буква в верхнем регистре, остальные в нижнем)
+        // Метод приведения имени и фамилии к нужному формату(первая буква в верхнем регистре, остальные в нижнем)
         public static string Capitalize(string text)
         {
             char[] v = text.ToCharArray();
@@ -142,11 +145,15 @@ namespace Test
             return s;
         }
         
+        // Подтверждение регистрации
         private void button1_Click(object sender, EventArgs e)
         {
+            // Проверка валидности
             if (IsValid(Login_TextBox.Text, Name_TextBox.Text, Surname_TextBox.Text, Email_TextBox.Text, Password_MTextBox.Text, PasswordConfirm_MTextBox.Text) == false) return;
+            // Обнуление id пользователя 
             MainData.userID = -1;
-            using (SqlConnection con = new SqlConnection("Data Source=RAGEN;Initial Catalog=Test;Integrated Security=True"))
+            // Запись данных о пользователе в БД
+            using (SqlConnection con = new SqlConnection("Data Source=192.168.1.65,1433;Initial Catalog=Test;User ID=Ragen; Password=utg1df25fu"))
             {
                 con.Open();
                 using (SqlCommand com = con.CreateCommand())
@@ -163,6 +170,7 @@ namespace Test
                                                     login, name, surname, email, password);
                     com.CommandType = CommandType.Text;
                     com.ExecuteNonQuery();
+                    // Выборка id пользователя
                     com.CommandText = string.Format("SELECT ID FROM Accounts WHERE Login = '{0}'",
                                                     login);
                     com.CommandType = CommandType.Text;
@@ -176,6 +184,7 @@ namespace Test
                 }
                 con.Close();
             }
+            // Открытие MainForm
             MainForm mainForm = new MainForm();
             this.Hide();
             mainForm.Show();           

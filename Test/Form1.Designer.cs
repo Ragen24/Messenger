@@ -61,6 +61,7 @@
             this.Exit.TabIndex = 2;
             this.Exit.Text = "Выход";
             this.Exit.UseVisualStyleBackColor = true;
+            this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
             // LogIn
             // 

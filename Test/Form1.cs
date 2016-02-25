@@ -13,8 +13,8 @@ namespace Test
 {
     public partial class LogIn : Form
     {
-        static public LogIn classLogIn;
-        
+        // Для храннения указателя на данный класс
+        public static LogIn classLogIn;
 
         public LogIn()
         {
@@ -22,6 +22,7 @@ namespace Test
             InitializeComponent();
         }
 
+        // Открытие формы регистрации
         private void Registration_But_Click(object sender, EventArgs e)
         {
             Registration RegForm = new Registration();
@@ -34,11 +35,18 @@ namespace Test
             
         }
 
+        // Открытие формы входа
         private void SignIn_But_Click(object sender, EventArgs e)
         {
             SignIn signInForm = new SignIn();
             this.Hide();
             signInForm.ShowDialog();
+        }
+
+        // Закрытие приложения
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -1,0 +1,15 @@
+C:\Project\Test\Test\bin\Release\Test.exe.config
+C:\Project\Test\Test\bin\Release\Test.exe
+C:\Project\Test\Test\bin\Release\Test.pdb
+C:\Project\Test\Test\bin\Release\EntityFramework.dll
+C:\Project\Test\Test\bin\Release\EntityFramework.xml
+C:\Project\Test\Test\obj\Release\Test.LogIn.resources
+C:\Project\Test\Test\obj\Release\Test.MainForm.resources
+C:\Project\Test\Test\obj\Release\Test.MessageView.resources
+C:\Project\Test\Test\obj\Release\Test.Properties.Resources.resources
+C:\Project\Test\Test\obj\Release\Test.Registration.resources
+C:\Project\Test\Test\obj\Release\Test.SignIn.resources
+C:\Project\Test\Test\obj\Release\Test.WriteMessage.resources
+C:\Project\Test\Test\obj\Release\Test.csproj.GenerateResource.Cache
+C:\Project\Test\Test\obj\Release\Test.exe
+C:\Project\Test\Test\obj\Release\Test.pdb

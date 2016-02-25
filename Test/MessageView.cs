@@ -18,26 +18,31 @@ namespace Test
             InitializeComponent();
         }
 
+        // Ответ на сообщение
         private void Reply_But_Click(object sender, EventArgs e)
         {
+            // Определение типа сообщения 
             if (MainData.messageType == 0)
                 MainData.replyId = MainForm.classMainForm.messages[MainData.messageType][MainData.selectedMessage].recipient_id;
             else if (MainData.messageType == 1)
                 MainData.replyId = MainForm.classMainForm.messages[MainData.messageType][MainData.selectedMessage].sender_id;
-            MainData.reply = true;
+            MainData.reply = true;      // Для автоматического ввода логина собеседника
+            // Закрытие данной формы и открытие формы написания сообщения
             WriteMessage writeMessageForm = new WriteMessage();
             this.Close();
             writeMessageForm.ShowDialog();
         }
 
+        // Загрузка содержимого формы
         private void MessageView_Load(object sender, EventArgs e)
         {
+            // Для записи имен/фамилий отправителя и получателя
             string senderName = "";
             string senderSurname = "";
             string recipientName = "";
             string recipientSurname = "";
 
-            using (SqlConnection con = new SqlConnection("Data Source=RAGEN;Initial Catalog=Test;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection("Data Source=192.168.1.65,1433;Initial Catalog=Test;User ID=Ragen; Password=utg1df25fu"))
             {
                 con.Open();
                 using (SqlCommand com = con.CreateCommand())
@@ -70,24 +75,39 @@ namespace Test
                 con.Close();
             }
 
+            // Заполнение полей
             SenderName_Lable.Text = SenderName_Lable.Text + " " + senderName + " " + senderSurname;
             RecipientName_Lable.Text = RecipientName_Lable.Text + " " + recipientName + " " + recipientSurname;
             Header_Lable.Text = MainForm.classMainForm.messages[MainData.messageType][MainData.selectedMessage].header.ToString();
             Text_Lable.Text = MainForm.classMainForm.messages[MainData.messageType][MainData.selectedMessage].text.ToString();
             Date_Lable.Text = MainForm.classMainForm.messages[MainData.messageType][MainData.selectedMessage].date.ToString();
         }
-
+        
+        // Удаление...
         private void DeleteMsg_But_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("In the development");
             /*using (SqlConnection con = new SqlConnection("Data Source=RAGEN;Initial Catalog=Test;Integrated Security=True"))
              {
                  con.Open();
                  using (SqlCommand com = con.CreateCommand())
                  {
-                     com.CommandText = string.Format("DELETE FROM Messages WHERE ID = '{0}'",
-                                                     MainForm.classMainForm.messages[MainData.messageType][MainData.selectedMessage].sender_id);
-                     com.CommandType = CommandType.Text;
-                     com.ExecuteNonQuery();
+                     //Отправленные
+                     if (MainData.messageType == 0)
+                     {
+                         com.CommandText = string.Format("DELETE FROM Messages WHERE ID = '{0}'",
+                                                     MainForm.classMainForm.messages[0][MainData.selectedMessage].ID);
+                         com.CommandType = CommandType.Text;
+                         com.ExecuteNonQuery();
+                     }
+                     else if (MainData.messageType == 1)
+                     {
+                         com.CommandText = string.Format("DELETE FROM Messages WHERE ID = '{0}'",
+                                                     MainForm.classMainForm.messages[0][MainData.selectedMessage].ID);
+                         com.CommandType = CommandType.Text;
+                         com.ExecuteNonQuery();
+                     }
+                     
                  }
                  con.Close();
              }*/

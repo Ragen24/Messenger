@@ -21,7 +21,8 @@ namespace Test
         private bool IsValid(string login, string password)
         {
             MainData.userID = -1;
-            using (SqlConnection con = new SqlConnection("Data Source=RAGEN;Initial Catalog=Test;Integrated Security=True"))
+            // Проверка на наличие такой пары логин/пароль в БД
+            using (SqlConnection con = new SqlConnection("Data Source=192.168.1.65,1433;Initial Catalog=Test;User ID=Ragen; Password=utg1df25fu"))
             {
                 con.Open();
                 using (SqlCommand com = con.CreateCommand())
@@ -37,14 +38,28 @@ namespace Test
                     reader.Close();
                     com.ExecuteNonQuery();           
                 }
-                con.Close();
-                if (MainData.userID == -1)
-                {
-                    MessageBox.Show("Логин или пароль введены неверно");
-                    Login_TextBox.Focus();
-                    Password_MTextBox.Text = "";
-                    return false;
-                }
+                con.Close();               
+            }
+            if (MainData.userID == -1)
+            {
+                MessageBox.Show("Логин или пароль введены неверно");
+                Login_TextBox.Focus();
+                Password_MTextBox.Text = "";
+                return false;
+            }
+            // Введен ли логин
+            if (Login_TextBox.Text == "")
+            {
+                MessageBox.Show("Введите логин");
+                Login_TextBox.Focus();
+                return false;
+            }
+            // Введен ли пароль
+            if (Password_MTextBox.Text == "")
+            {
+                MessageBox.Show("Введите пароль");
+                Password_MTextBox.Focus();
+                return false;
             }
 
             return true;
@@ -52,13 +67,14 @@ namespace Test
 
         private void Confirm_But_Click(object sender, EventArgs e)
         {
+            // Проверка валидности
             if (IsValid(Login_TextBox.Text, Password_MTextBox.Text) == false) return;
 
+            // Открытие главной формы
             MainForm mainForm = new MainForm();
             mainForm.Show();
             this.Close();
-            
-            
+     
         }
 
         private void Back_But_Click(object sender, EventArgs e)
