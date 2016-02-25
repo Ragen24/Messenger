@@ -18,6 +18,33 @@ namespace Test
             InitializeComponent();
         }
 
+        private bool IsValid(string login, string name, string surname, string email, string password, string passwordConfirm)
+        {
+            if (RecipName_TextBox.Text == "")
+            {
+                MessageBox.Show("Введите логин получателя");
+                RecipName_TextBox.Focus();
+                return false;
+            }
+
+            if (Header_TextBox.Text == "")
+            {
+                MessageBox.Show("Введите заголовок сообщения");
+                Header_TextBox.Focus();
+                return false;
+            }
+
+            if (Message_TextBox.Text == "")
+            {
+                MessageBox.Show("Введите сообщение");
+                Message_TextBox.Focus();
+                return false;
+            }
+
+
+            return true;
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -31,7 +58,6 @@ namespace Test
                 using (SqlCommand com = con.CreateCommand())
                 {
                     int recipId = -1;
-                    //int senderId = MainData.userID;
                     var recipLogin = RecipName_TextBox.Text;
                     var header = Header_TextBox.Text;
                     var messageText = Message_TextBox.Text;
@@ -44,9 +70,20 @@ namespace Test
                         recipId = reader.GetInt32(0);
                     }
                     reader.Close();
+
                     com.ExecuteNonQuery();
+                    if (recipId == -1)
+                    {
+                        MessageBox.Show("Пользователь с таким логином не существует");
+                        RecipName_TextBox.Text = "";
+                        RecipName_TextBox.Focus();
+                        con.Close();
+                        return;
+                    }
+
+                    
                     com.CommandText = string.Format("INSERT INTO Messages(Sender_id, Recipient_id, Header, Text, Date) VALUES('{0}', '{1}', '{2}', '{3}', '{4}')",
-                                                    MainData.userID, recipId, header, messageText, GetDateWithoutMilliseconds(DateTime.Now));
+                                                    MainData.userID, recipId, header, messageText, MainData.GetDateWithoutMilliseconds(DateTime.Now));
                     com.CommandType = CommandType.Text;
                     com.ExecuteNonQuery();
                     ///
@@ -63,15 +100,44 @@ namespace Test
                 }
                 con.Close();
             }
-            Close();
+            MainForm.classMainForm.RefreshSent();
+
+            this.Close();
         }
 
-        private String GetDateWithoutMilliseconds(DateTime d)
+        private void WriteMessage_Load(object sender, EventArgs e)
         {
+            if (MainData.reply)
+            {
+                string recipLogin = "";
+                using (SqlConnection con = new SqlConnection("Data Source=RAGEN;Initial Catalog=Test;Integrated Security=True"))
+                {
+                    con.Open();
+                    using (SqlCommand com = con.CreateCommand())
+                    {
+                        // Имя и фамилия отправителя.
+                        com.CommandText = string.Format("SELECT Login FROM Accounts WHERE ID = '{0}'",
+                                                        MainData.replyId);
+                        com.CommandType = CommandType.Text;
+                        SqlDataReader reader = com.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            recipLogin = reader.GetString(0);
+                        }
+                        reader.Close();
+                    }
+                    con.Close();
+                }
 
-            string z = (d.Year + "-" + d.Month + "-" + d.Day + " " + d.Hour + ":" + d.Minute + ":" + d.Second);
-            MessageBox.Show(z);
-            return z;
+                RecipName_TextBox.Text = recipLogin;
+                MainData.replyId = -1;
+                MainData.reply = false;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

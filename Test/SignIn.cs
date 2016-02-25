@@ -20,7 +20,7 @@ namespace Test
 
         private bool IsValid(string login, string password)
         {
-            int accIndex = -1;
+            MainData.userID = -1;
             using (SqlConnection con = new SqlConnection("Data Source=RAGEN;Initial Catalog=Test;Integrated Security=True"))
             {
                 con.Open();
@@ -31,15 +31,20 @@ namespace Test
                     com.CommandType = CommandType.Text;
                     SqlDataReader reader = com.ExecuteReader();
                     while (reader.Read())
-                    { 
-                        accIndex = reader.GetInt32(0);
+                    {
+                        MainData.userID = reader.GetInt32(0);
                     }
                     reader.Close();
-                    com.ExecuteNonQuery();
-
-                    MainData.userID = accIndex;               
+                    com.ExecuteNonQuery();           
                 }
                 con.Close();
+                if (MainData.userID == -1)
+                {
+                    MessageBox.Show("Логин или пароль введены неверно");
+                    Login_TextBox.Focus();
+                    Password_MTextBox.Text = "";
+                    return false;
+                }
             }
 
             return true;
@@ -52,25 +57,14 @@ namespace Test
             MainForm mainForm = new MainForm();
             mainForm.Show();
             this.Close();
-            /*using (SqlConnection con = new SqlConnection("Data Source=RAGEN;Initial Catalog=Test;Integrated Security=True"))
-            {
-                con.Open();
-                using (SqlCommand com = con.CreateCommand())
-                {
-                    com.CommandText = string.Format("SELECT * FROM Accounts WHERE Login = '{0}'", login);
-                    com.CommandType = CommandType.Text;
-                    SqlDataReader readerLog = com.ExecuteReader();
-                    //unicLog = readerLog.HasRows;
-                    readerLog.Close();
-                    com.CommandText = string.Format("SELECT * FROM Accounts WHERE Email = '{0}'", email);
-                    com.CommandType = CommandType.Text;
-                    SqlDataReader readerEmail = com.ExecuteReader();
-                    //unicEmail = readerEmail.HasRows;
-                    readerEmail.Close();
-                    com.ExecuteNonQuery();
-                }
-                con.Close();
-            }*/
+            
+            
+        }
+
+        private void Back_But_Click(object sender, EventArgs e)
+        {
+            LogIn.classLogIn.Show();
+            this.Close();
         }
     }
 }

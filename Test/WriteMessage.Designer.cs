@@ -97,6 +97,7 @@
             this.button2.TabIndex = 6;
             this.button2.Text = "Назад";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // WriteMessage
             // 
@@ -110,8 +111,10 @@
             this.Controls.Add(this.Message_TextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "WriteMessage";
             this.Text = "WriteMessage";
+            this.Load += new System.EventHandler(this.WriteMessage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

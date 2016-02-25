@@ -145,6 +145,7 @@ namespace Test
         private void button1_Click(object sender, EventArgs e)
         {
             if (IsValid(Login_TextBox.Text, Name_TextBox.Text, Surname_TextBox.Text, Email_TextBox.Text, Password_MTextBox.Text, PasswordConfirm_MTextBox.Text) == false) return;
+            MainData.userID = -1;
             using (SqlConnection con = new SqlConnection("Data Source=RAGEN;Initial Catalog=Test;Integrated Security=True"))
             {
                 con.Open();
@@ -162,11 +163,22 @@ namespace Test
                                                     login, name, surname, email, password);
                     com.CommandType = CommandType.Text;
                     com.ExecuteNonQuery();
+                    com.CommandText = string.Format("SELECT ID FROM Accounts WHERE Login = '{0}'",
+                                                    login);
+                    com.CommandType = CommandType.Text;
+                    SqlDataReader reader = com.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        MainData.userID = reader.GetInt32(0);
+                    }
+                    reader.Close();
+                    com.ExecuteNonQuery(); 
                 }
                 con.Close();
             }
-            Close();
-
+            MainForm mainForm = new MainForm();
+            this.Hide();
+            mainForm.Show();           
         }
 
         private void Registration_Load(object sender, EventArgs e)
@@ -189,6 +201,12 @@ namespace Test
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void Back_But_Click(object sender, EventArgs e)
+        {
+            LogIn.classLogIn.Show();
+            this.Close();
         }
     }
 }

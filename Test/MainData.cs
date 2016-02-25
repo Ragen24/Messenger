@@ -6,31 +6,32 @@ using System.Threading.Tasks;
 
 namespace Test
 {
-    class MainData
+    public class MainData
     {
         public static int userID;
-        public static MainData classMainData;
+        public static int selectedMessage;
+        public static int messageType;
+        public static int replyId;
+        public static bool reply = false;
+        public static DateTime lastIncMsgDate;
+        public static DateTime lastSentMsgDate;
         //classMainData = this;
 
-        public void Initialization()
+        public class Messages
         {
-            //MainData.classMainData = this;
+            public int sender_id;
+            public int recipient_id;
+            public string header;
+            public string text;
+            public DateTime date;
         }
 
-        public void CreateSession()
-        {
-            //LogIn.classMainForm.
-
-        }
-
-        public void AuthorizedMode()
+        public static String GetDateWithoutMilliseconds(DateTime d)
         {
 
+            string z = (d.Year + "-" + d.Month + "-" + d.Day + " " + d.Hour + ":" + d.Minute + ":" + d.Second);
+            return z;
         }
 
-        public void UnAuthorizedMode()
-        {
-
-        }
     }
 }

@@ -42,12 +42,12 @@
             this.Email_Lable = new System.Windows.Forms.Label();
             this.Password_Lable = new System.Windows.Forms.Label();
             this.PasswordConfirm_Lable = new System.Windows.Forms.Label();
+            this.Back_But = new System.Windows.Forms.Button();
             this.accountsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.testDataSet = new Test.TestDataSet();
             this.accountsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.accountsTableAdapter = new Test.TestDataSetTableAdapters.AccountsTableAdapter();
             this.accountsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.Back_But = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.accountsBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accountsBindingSource)).BeginInit();
@@ -164,6 +164,16 @@
             this.PasswordConfirm_Lable.Text = "Подтверждение пароля";
             this.PasswordConfirm_Lable.Click += new System.EventHandler(this.label5_Click);
             // 
+            // Back_But
+            // 
+            this.Back_But.Location = new System.Drawing.Point(115, 252);
+            this.Back_But.Name = "Back_But";
+            this.Back_But.Size = new System.Drawing.Size(100, 23);
+            this.Back_But.TabIndex = 20;
+            this.Back_But.Text = "Назад";
+            this.Back_But.UseVisualStyleBackColor = true;
+            this.Back_But.Click += new System.EventHandler(this.Back_But_Click);
+            // 
             // accountsBindingSource1
             // 
             this.accountsBindingSource1.DataMember = "Accounts";
@@ -187,15 +197,6 @@
             // 
             this.accountsBindingSource2.DataMember = "Accounts";
             this.accountsBindingSource2.DataSource = this.testDataSet;
-            // 
-            // Back_But
-            // 
-            this.Back_But.Location = new System.Drawing.Point(115, 252);
-            this.Back_But.Name = "Back_But";
-            this.Back_But.Size = new System.Drawing.Size(100, 23);
-            this.Back_But.TabIndex = 20;
-            this.Back_But.Text = "Назад";
-            this.Back_But.UseVisualStyleBackColor = true;
             // 
             // Registration
             // 

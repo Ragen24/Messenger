@@ -38,7 +38,7 @@
             this.Registration_But.Location = new System.Drawing.Point(65, 91);
             this.Registration_But.Name = "Registration_But";
             this.Registration_But.Size = new System.Drawing.Size(100, 23);
-            this.Registration_But.TabIndex = 0;
+            this.Registration_But.TabIndex = 1;
             this.Registration_But.Text = "Регистрация";
             this.Registration_But.UseVisualStyleBackColor = true;
             this.Registration_But.Click += new System.EventHandler(this.Registration_But_Click);
@@ -48,7 +48,7 @@
             this.SignIn_But.Location = new System.Drawing.Point(65, 41);
             this.SignIn_But.Name = "SignIn_But";
             this.SignIn_But.Size = new System.Drawing.Size(100, 23);
-            this.SignIn_But.TabIndex = 2;
+            this.SignIn_But.TabIndex = 0;
             this.SignIn_But.Text = "Войти";
             this.SignIn_But.UseVisualStyleBackColor = true;
             this.SignIn_But.Click += new System.EventHandler(this.SignIn_But_Click);
@@ -58,7 +58,7 @@
             this.Exit.Location = new System.Drawing.Point(65, 142);
             this.Exit.Name = "Exit";
             this.Exit.Size = new System.Drawing.Size(100, 23);
-            this.Exit.TabIndex = 3;
+            this.Exit.TabIndex = 2;
             this.Exit.Text = "Выход";
             this.Exit.UseVisualStyleBackColor = true;
             // 
@@ -70,6 +70,7 @@
             this.Controls.Add(this.Exit);
             this.Controls.Add(this.SignIn_But);
             this.Controls.Add(this.Registration_But);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "LogIn";
             this.Text = "Messanger";
             this.Load += new System.EventHandler(this.MainForm_Load);
